@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: demo-app
-          image: auraacrdevopsplat.azurecr.io/demo-app:36cab244f047a31aa1a8867f717ac6d24eeebf2e
+          image: auraacrdevopsplat.azurecr.io/demo-app:02bb13c8bdab74f3bbc15041348dbc84ebc7a402
           ports:
             - containerPort: 3000
           env:
