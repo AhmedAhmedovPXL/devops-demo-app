@@ -25,12 +25,16 @@ jobs:
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
 
+      - name: 🏗️ Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: 🏗️ Build & Push image
         run: |
-          docker build -t ${{ env.ACR_NAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }} .
-          docker build -t ${{ env.ACR_NAME }}/${{ env.IMAGE_NAME }}:latest .
-          docker push ${{ env.ACR_NAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
-          docker push ${{ env.ACR_NAME }}/${{ env.IMAGE_NAME }}:latest
+          docker buildx build \
+            --platform linux/amd64 \
+            -t ${{ env.ACR_NAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }} \
+            -t ${{ env.ACR_NAME }}/${{ env.IMAGE_NAME }}:latest \
+            --push .
 
       - name: 📝 Update image tag
         run: |
