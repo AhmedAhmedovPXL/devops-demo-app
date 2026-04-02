@@ -38,6 +38,7 @@ jobs:
 
       - name: 📝 Update image tag
         run: |
+          git pull origin main
           sed -i "s|image:.*|image: ${{ env.ACR_NAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}|" k8s/deployment.yaml
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
