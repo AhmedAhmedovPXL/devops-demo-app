@@ -31,7 +31,7 @@ jobs:
       - name: 🏗️ Build & Push image
         run: |
           docker buildx build \
-            --platform linux/amd64 \
+            --platform linux/arm64 \
             -t ${{ env.ACR_NAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }} \
             -t ${{ env.ACR_NAME }}/${{ env.IMAGE_NAME }}:latest \
             --push .
