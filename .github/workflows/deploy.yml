@@ -3,6 +3,8 @@ name: CI/CD Pipeline
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'k8s/deployment.yaml'
 
 env:
   ACR_NAME: auraacrdevopsplat.azurecr.io
